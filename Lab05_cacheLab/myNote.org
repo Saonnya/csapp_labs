@@ -1,10 +1,11 @@
 * Cache Notes
-参考CASPP第六章, 主要参考[[https://www.bilibili.com/video/BV18L411t7zY][B站视频]] 以及 [[https://zhuanlan.zhihu.com/p/484657229][知乎文章]]。
+参考CASPP第六章, 主要参考 [[https://www.bilibili.com/video/BV18L411t7zY][B站视频]] 。
 ** 为什么 set 码在中间不在前面
 按照 cache 映射内存地址的规则, 每一个 cache set 都会映射到比其空间更大的一片内存地址, 但只能存储其中的一部分数据(同一时间只能存一块数据); 
 如果设定地址最前面的数字为 set 码, 则连续的地址都会映射到同一片空间, 反而会导致一片连续的数据块不可能同时存在于 cache 中。
 
 * Lab Notes
+参考郭郭的视频以及 [[https://zhuanlan.zhihu.com/p/484657229][知乎文章]]。
 ** csim.c
 + getopt(argc, argv, "pattern") 获取调用参数;
 + switch case 如果不 break 会 fall through 到后面的 case;
