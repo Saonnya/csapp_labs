@@ -1,0 +1,17 @@
+* Cache Notes
+参考CASPP第六章, 主要参考[[https://www.bilibili.com/video/BV18L411t7zY][B站视频]] 以及 [[https://zhuanlan.zhihu.com/p/484657229][知乎文章]]。
+** 为什么 set 码在中间不在前面
+按照 cache 映射内存地址的规则, 每一个 cache set 都会映射到比其空间更大的一片内存地址, 但只能存储其中的一部分数据(同一时间只能存一块数据); 
+如果设定地址最前面的数字为 set 码, 则连续的地址都会映射到同一片空间, 反而会导致一片连续的数据块不可能同时存在于 cache 中。
+
+* Lab Notes
+** csim.c
++ getopt(argc, argv, "pattern") 获取调用参数;
++ switch case 如果不 break 会 fall through 到后面的 case;
++ 双向链表实现 LRU;
++ 根据文件描述，调用参数 I 不用做任何反应，调用不会跨内存块所以 size 不用考虑;
+
+** trans.c
++ 默认Cache有 2^5 个set, 每组 1 行 cache_line, 每行 5 个数据位(32个地址/8个int)
++ 32*32的矩阵每行能占用4个set, 8行即可占满一个cache, ==> 第8行和第0行的开头会映射到cache的同一组, 故将此矩阵划分为8*8的块
++ 更大的矩阵需要针对性地开发更优化的转置函数, 但上述的思路生成的通用函数三题均可通过, 懒得追求满分了
